@@ -30,6 +30,8 @@ namespace LTIAdminDesktop.Forms
         private string actual_survey_student_link = "";
         private string actual_survey_teacher_link = "";
 
+        private bool PopulateDataGrid = true;
+
         public Dashboard()
         {
             InitializeComponent();
@@ -47,6 +49,7 @@ namespace LTIAdminDesktop.Forms
             ConfigControl.BackColor = Color.DarkRed;
             ConfigControl.ForeColor = Color.WhiteSmoke;
             lbPantallaPrincipal.Text = "Configuraciones Globales";
+            label1.Text = "Configuraciones";
             //--
             List<Configurations> configs = _context.Configurations.ToList();
             GetConfigInfo(configs);
@@ -250,11 +253,22 @@ namespace LTIAdminDesktop.Forms
         private void TermsControl_Click(object sender, EventArgs e)
         {
             ResetFormLayout();
+            TermsPanel.Show();
             //---
             TermsControl.BackColor = Color.DarkRed;
             TermsControl.ForeColor = Color.WhiteSmoke;
             lbPantallaPrincipal.Text = "Control de Normas";
+            label1.Text = "";
             //---
+            if (PopulateDataGrid)
+            {
+                string[] columns = { "ID", "Nombre", "Fecha Registro", "Computador", "Nombre Asignatura", "Código", "Sección" };
+                for (int i = 0; i < columns.Length; i++)
+                {
+                    ReportBox.Columns.Add(columns[i], columns[i]);
+                }
+                PopulateDataGrid = false;
+            }
 
         }
         private void DashControl_Click(object sender, EventArgs e)
@@ -304,9 +318,13 @@ namespace LTIAdminDesktop.Forms
 
             //Hide Panels
             ConfigurationPanel.Hide();
+            TermsPanel.Hide();
 
             //Show Dashboard
-            DashBoardPanel.Show();
+        
+
+            //Other
+            label1.Text = "";
 
         }
 
