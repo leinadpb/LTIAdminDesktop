@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System.Configuration;
 
 namespace LTIAdminDesktop.Models
 {
@@ -16,6 +15,7 @@ namespace LTIAdminDesktop.Models
         {
         }
 
+        public virtual DbSet<Admins> Admins { get; set; }
         public virtual DbSet<Claims> Claims { get; set; }
         public virtual DbSet<Complains> Complains { get; set; }
         public virtual DbSet<Configurations> Configurations { get; set; }
@@ -32,12 +32,28 @@ namespace LTIAdminDesktop.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["LTIConnection"].ConnectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=tcp:GOISTER\\SQLEXPRESS;Initial Catalog=LTI;User ID=goister;Password=Pplg4856;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admins>(entity =>
+            {
+                entity.HasKey(e => e.AdminId);
+
+                entity.HasIndex(e => e.TeacherId);
+
+                entity.Property(e => e.AdminId).HasColumnName("AdminID");
+
+                entity.Property(e => e.TeacherId).HasColumnName("TeacherID");
+
+                entity.HasOne(d => d.Teacher)
+                    .WithMany(p => p.Admins)
+                    .HasForeignKey(d => d.TeacherId);
+            });
+
             modelBuilder.Entity<Claims>(entity =>
             {
                 entity.HasKey(e => e.ClaimId);

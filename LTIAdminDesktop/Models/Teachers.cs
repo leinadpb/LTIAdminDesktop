@@ -7,6 +7,7 @@ namespace LTIAdminDesktop.Models
     {
         public Teachers()
         {
+            Admins = new HashSet<Admins>();
             Claims = new HashSet<Claims>();
             Complains = new HashSet<Complains>();
             Students = new HashSet<Students>();
@@ -24,6 +25,7 @@ namespace LTIAdminDesktop.Models
         public int? HistoryTeacherId { get; set; }
 
         public HistoryTeachers HistoryTeacher { get; set; }
+        public ICollection<Admins> Admins { get; set; }
         public ICollection<Claims> Claims { get; set; }
         public ICollection<Complains> Complains { get; set; }
         public ICollection<Students> Students { get; set; }

@@ -273,6 +273,7 @@
     <Compile Include="Forms\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admins.cs" />
     <Compile Include="Models\Claims.cs" />
     <Compile Include="Models\Complains.cs" />
     <Compile Include="Models\Configurations.cs" />
