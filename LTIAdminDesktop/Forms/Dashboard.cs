@@ -31,6 +31,9 @@ namespace LTIAdminDesktop.Forms
         private string actual_survey_teacher_link = "";
 
         private bool PopulateDataGrid = true;
+        private bool HaveFilledLists = false;
+
+        string[] columns = { "ID", "Nombre", "Fecha Registro", "Computador", "Nombre Asignatura", "Código", "Sección" };
 
         public Dashboard()
         {
@@ -260,14 +263,33 @@ namespace LTIAdminDesktop.Forms
             lbPantallaPrincipal.Text = "Control de Normas";
             label1.Text = "";
             //---
+            if (ActivateFilter.Checked)
+            {
+                ListTrimestres.Enabled = true;
+                ListTeachers.Enabled = true;
+                ListSubjects.Enabled = true;
+                textBox1.Enabled = true;
+            }
+            else
+            {
+                ListTrimestres.Enabled = false;
+                ListTeachers.Enabled = false;
+                ListSubjects.Enabled = false;
+                textBox1.Enabled = false;
+            }
+            //---
             if (PopulateDataGrid)
             {
-                string[] columns = { "ID", "Nombre", "Fecha Registro", "Computador", "Nombre Asignatura", "Código", "Sección" };
+                
                 for (int i = 0; i < columns.Length; i++)
                 {
                     ReportBox.Columns.Add(columns[i], columns[i]);
                 }
                 PopulateDataGrid = false;
+            }
+            if (!HaveFilledLists)
+            {
+                fillLists();
             }
 
         }
@@ -325,7 +347,9 @@ namespace LTIAdminDesktop.Forms
 
             //Other
             label1.Text = "";
-
+            ReportBox.Rows.Clear();
+            results.Text = "";
+            ActivateFilter.Checked = false;
         }
 
         private void ActivateSurvey_CheckedChanged(object sender, EventArgs e)
@@ -358,6 +382,119 @@ namespace LTIAdminDesktop.Forms
             }
         }
 
-        
+        private void fillLists()
+        {
+            var asigs = _context.Subjects.OrderBy(s => s.SubjectName).Select(s => s).ToList();
+            var teachs = _context.Teachers.OrderBy(t => t.DisplayName).Select(t => t).ToList();
+            var trimes = _context.Trimestres.OrderBy(t => t.Name).Select(t => t).ToList();
+
+            asigs.Insert(0, new Subjects { SubjectId = -1, SubjectName = "Seleccione ---"});
+            teachs.Insert(0, new Teachers { TeacherId = -1, DisplayName = "Seleccione ---"});
+            trimes.Insert(0, new Trimestres { TrimestreId = -1, Name = "Seleccione ---"});
+
+            ListTrimestres.DisplayMember = "Name";
+            ListTrimestres.ValueMember = "TrimestreID";
+            //ListTrimestres.Items.Add(0, new Trimestres { } );
+            ListTrimestres.DataSource = trimes;
+
+            ListTeachers.DisplayMember = "DisplayName";
+            ListTeachers.ValueMember = "TeacherID";
+            // ListTeachers.Items.Add("Seleccione ---");
+            ListTeachers.DataSource = teachs;
+
+            ListSubjects.DisplayMember = "SubjectName";
+            ListSubjects.ValueMember = "SubjectID";
+            // ListSubjects.Items.Add("Seleccione ---");
+            ListSubjects.DataSource = asigs;
+
+            HaveFilledLists = true;
+        }
+
+        private void AdminsControl_Click(object sender, EventArgs e)
+        {
+            AdminsForm AdminForm = new AdminsForm(_context);
+            AdminForm.ShowDialog();
+        }
+
+        private void GenerateReport_Click(object sender, EventArgs e)
+        {
+            var students = _context.Students.Select(s => s);
+
+            var oldStudents = _context.HistoryStudents.Select(hs => hs);
+
+            bool includeOld = true;
+            if (ActivateFilter.Checked)
+            {
+                if (ListTrimestres.SelectedItem != null && ListTrimestres.SelectedIndex > 0)
+                {
+                    int id = Int32.Parse(ListTrimestres.SelectedValue.ToString());
+                    Trimestres trimestre = _context.Trimestres.Where(t => t.TrimestreId == id).FirstOrDefault();
+                    students = students.Where(s => s.RegisteredDate >= trimestre.StartDate && s.RegisteredDate <= trimestre.EndDate).Select(s => s);
+                    includeOld = false;
+                }
+                if (ListTeachers.SelectedItem != null && ListTeachers.SelectedIndex > 0)
+                {
+                    int id = Int32.Parse(ListTeachers.SelectedValue.ToString());
+                    students = students.Where(s => s.TeacherId == id).Select(t => t);
+                }
+                if (ListSubjects.SelectedItem != null && ListSubjects.SelectedIndex > 0)
+                {
+                    int id = Int32.Parse(ListSubjects.SelectedValue.ToString());
+                    Subjects subject = _context.Subjects.Where(sb => sb.SubjectId == id).FirstOrDefault();
+                    students = students.Where(s => s.SubjectCode == subject.SubjectCode).Select(s => s);
+                }
+                if (!textBox1.Text.Equals(""))
+                {
+                    string txt = textBox1.Text;
+                    students = students.Where(s => s.LoginName.ToLower().Contains(txt.ToLower().Trim()) || s.DisplayName.ToLower().Contains(txt.ToLower().Trim())).Select(s => s);
+                }
+            }
+            ReportBox.Rows.Clear();
+            ShowStudents(students.ToList());
+            int count = students.Count();
+            if (includeOld)
+            {
+                ShowOldStudents(oldStudents.ToList());
+                count += oldStudents.Count();
+            }
+            
+            results.Text = count.ToString() + " resultados encontrados.";
+        }
+        private void ShowStudents(List<Students> students)
+        {
+            foreach(var s in students)
+            {
+                ReportBox.Rows.Add(s.LoginName, s.DisplayName, s.RegisteredDate, s.ComputerName, s.SubjectName, s.SubjectCode, s.SubjectSection);
+            }
+        }
+        private void ShowOldStudents(List<HistoryStudents> students)
+        {
+            foreach (var s in students)
+            {
+                ReportBox.Rows.Add(s.LoginName, s.DisplayName, s.RegisteredDate, s.ComputerName, s.SubjectName, s.SubjectSection, s.SubjectSection);
+            }
+        }
+
+        private void ActivateFilter_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox ch = (CheckBox)sender;
+            if (ch.Checked)
+            {
+                ListTrimestres.Enabled = true;
+                ListTrimestres.SelectedIndex = 0;
+                ListTeachers.Enabled = true;
+                ListTeachers.SelectedIndex = 0;
+                ListSubjects.Enabled = true;
+                ListSubjects.SelectedIndex = 0;
+                textBox1.Enabled = true;
+            }
+            else
+            {
+                ListTrimestres.Enabled = false;
+                ListTeachers.Enabled = false;
+                ListSubjects.Enabled = false;
+                textBox1.Enabled = false;
+            }
+        }
     }
 }
