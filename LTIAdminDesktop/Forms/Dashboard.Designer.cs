@@ -56,6 +56,8 @@
             this.ActivateSurvey = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.TermsPanel = new System.Windows.Forms.Panel();
+            this.ActivateFilter = new System.Windows.Forms.CheckBox();
+            this.results = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.GenerateReport = new System.Windows.Forms.Button();
@@ -69,8 +71,9 @@
             this.PrintReport = new System.Windows.Forms.Button();
             this.SaveReport = new System.Windows.Forms.Button();
             this.ReportBox = new System.Windows.Forms.DataGridView();
-            this.results = new System.Windows.Forms.Label();
-            this.ActivateFilter = new System.Windows.Forms.CheckBox();
+            this.ReminderText = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.SelectTeacherSubject = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
@@ -228,6 +231,9 @@
             // ConfigurationPanel
             // 
             this.ConfigurationPanel.BackColor = System.Drawing.Color.White;
+            this.ConfigurationPanel.Controls.Add(this.SelectTeacherSubject);
+            this.ConfigurationPanel.Controls.Add(this.label11);
+            this.ConfigurationPanel.Controls.Add(this.ReminderText);
             this.ConfigurationPanel.Controls.Add(this.button1);
             this.ConfigurationPanel.Controls.Add(this.OpenTeacherSurveyFullscreen);
             this.ConfigurationPanel.Controls.Add(this.label2);
@@ -244,7 +250,7 @@
             this.ConfigurationPanel.Controls.Add(this.label5);
             this.ConfigurationPanel.Location = new System.Drawing.Point(200, 109);
             this.ConfigurationPanel.Name = "ConfigurationPanel";
-            this.ConfigurationPanel.Size = new System.Drawing.Size(947, 561);
+            this.ConfigurationPanel.Size = new System.Drawing.Size(947, 577);
             this.ConfigurationPanel.TabIndex = 2;
             // 
             // button1
@@ -256,7 +262,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(787, 494);
+            this.button1.Location = new System.Drawing.Point(767, 520);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(151, 41);
             this.button1.TabIndex = 0;
@@ -279,7 +285,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(551, 181);
+            this.label2.Location = new System.Drawing.Point(537, 181);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(228, 18);
             this.label2.TabIndex = 3;
@@ -289,7 +295,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(549, 326);
+            this.label3.Location = new System.Drawing.Point(540, 326);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(222, 18);
             this.label3.TabIndex = 7;
@@ -298,7 +304,7 @@
             // SurveyLinkTeacher
             // 
             this.SurveyLinkTeacher.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SurveyLinkTeacher.Location = new System.Drawing.Point(552, 349);
+            this.SurveyLinkTeacher.Location = new System.Drawing.Point(540, 349);
             this.SurveyLinkTeacher.Name = "SurveyLinkTeacher";
             this.SurveyLinkTeacher.Size = new System.Drawing.Size(364, 23);
             this.SurveyLinkTeacher.TabIndex = 6;
@@ -317,7 +323,7 @@
             // SurveyLink
             // 
             this.SurveyLink.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SurveyLink.Location = new System.Drawing.Point(554, 202);
+            this.SurveyLink.Location = new System.Drawing.Point(540, 202);
             this.SurveyLink.Name = "SurveyLink";
             this.SurveyLink.Size = new System.Drawing.Size(364, 23);
             this.SurveyLink.TabIndex = 2;
@@ -326,7 +332,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(659, 84);
+            this.label4.Location = new System.Drawing.Point(671, 84);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 27);
             this.label4.TabIndex = 5;
@@ -336,7 +342,7 @@
             // 
             this.ActivateSurveyTeacher.AutoSize = true;
             this.ActivateSurveyTeacher.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActivateSurveyTeacher.Location = new System.Drawing.Point(551, 299);
+            this.ActivateSurveyTeacher.Location = new System.Drawing.Point(543, 299);
             this.ActivateSurveyTeacher.Name = "ActivateSurveyTeacher";
             this.ActivateSurveyTeacher.Size = new System.Drawing.Size(353, 24);
             this.ActivateSurveyTeacher.TabIndex = 5;
@@ -348,7 +354,7 @@
             // 
             this.ShowRulesReminder.AutoSize = true;
             this.ShowRulesReminder.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowRulesReminder.Location = new System.Drawing.Point(54, 202);
+            this.ShowRulesReminder.Location = new System.Drawing.Point(54, 231);
             this.ShowRulesReminder.Name = "ShowRulesReminder";
             this.ShowRulesReminder.Size = new System.Drawing.Size(386, 44);
             this.ShowRulesReminder.TabIndex = 12;
@@ -380,7 +386,7 @@
             // 
             this.ActivateSurvey.AutoSize = true;
             this.ActivateSurvey.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ActivateSurvey.Location = new System.Drawing.Point(551, 149);
+            this.ActivateSurvey.Location = new System.Drawing.Point(539, 149);
             this.ActivateSurvey.Name = "ActivateSurvey";
             this.ActivateSurvey.Size = new System.Drawing.Size(365, 24);
             this.ActivateSurvey.TabIndex = 1;
@@ -392,7 +398,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(161, 84);
+            this.label5.Location = new System.Drawing.Point(174, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 27);
             this.label5.TabIndex = 10;
@@ -416,10 +422,30 @@
             this.TermsPanel.Controls.Add(this.PrintReport);
             this.TermsPanel.Controls.Add(this.SaveReport);
             this.TermsPanel.Controls.Add(this.ReportBox);
-            this.TermsPanel.Location = new System.Drawing.Point(206, 112);
+            this.TermsPanel.Location = new System.Drawing.Point(206, 135);
             this.TermsPanel.Name = "TermsPanel";
-            this.TermsPanel.Size = new System.Drawing.Size(941, 574);
+            this.TermsPanel.Size = new System.Drawing.Size(941, 551);
             this.TermsPanel.TabIndex = 3;
+            // 
+            // ActivateFilter
+            // 
+            this.ActivateFilter.AutoSize = true;
+            this.ActivateFilter.Location = new System.Drawing.Point(19, 35);
+            this.ActivateFilter.Name = "ActivateFilter";
+            this.ActivateFilter.Size = new System.Drawing.Size(15, 14);
+            this.ActivateFilter.TabIndex = 14;
+            this.ActivateFilter.UseVisualStyleBackColor = true;
+            this.ActivateFilter.CheckedChanged += new System.EventHandler(this.ActivateFilter_CheckedChanged);
+            // 
+            // results
+            // 
+            this.results.AutoSize = true;
+            this.results.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.results.Location = new System.Drawing.Point(384, 523);
+            this.results.Name = "results";
+            this.results.Size = new System.Drawing.Size(166, 18);
+            this.results.TabIndex = 13;
+            this.results.Text = "13 resultados encontrados.";
             // 
             // label10
             // 
@@ -574,33 +600,42 @@
             this.ReportBox.Size = new System.Drawing.Size(929, 454);
             this.ReportBox.TabIndex = 0;
             // 
-            // results
+            // ReminderText
             // 
-            this.results.AutoSize = true;
-            this.results.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.results.Location = new System.Drawing.Point(384, 523);
-            this.results.Name = "results";
-            this.results.Size = new System.Drawing.Size(166, 18);
-            this.results.TabIndex = 13;
-            this.results.Text = "13 resultados encontrados.";
+            this.ReminderText.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReminderText.Location = new System.Drawing.Point(54, 317);
+            this.ReminderText.Name = "ReminderText";
+            this.ReminderText.Size = new System.Drawing.Size(364, 23);
+            this.ReminderText.TabIndex = 13;
             // 
-            // ActivateFilter
+            // label11
             // 
-            this.ActivateFilter.AutoSize = true;
-            this.ActivateFilter.Location = new System.Drawing.Point(19, 35);
-            this.ActivateFilter.Name = "ActivateFilter";
-            this.ActivateFilter.Size = new System.Drawing.Size(15, 14);
-            this.ActivateFilter.TabIndex = 14;
-            this.ActivateFilter.UseVisualStyleBackColor = true;
-            this.ActivateFilter.CheckedChanged += new System.EventHandler(this.ActivateFilter_CheckedChanged);
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(51, 296);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(153, 18);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Texto en el recordatorio:";
+            // 
+            // SelectTeacherSubject
+            // 
+            this.SelectTeacherSubject.AutoSize = true;
+            this.SelectTeacherSubject.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectTeacherSubject.Location = new System.Drawing.Point(54, 190);
+            this.SelectTeacherSubject.Name = "SelectTeacherSubject";
+            this.SelectTeacherSubject.Size = new System.Drawing.Size(328, 24);
+            this.SelectTeacherSubject.TabIndex = 15;
+            this.SelectTeacherSubject.Text = "Permitir seleccionar asignatura y/o profesor.";
+            this.SelectTeacherSubject.UseVisualStyleBackColor = true;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 686);
-            this.Controls.Add(this.TermsPanel);
             this.Controls.Add(this.ConfigurationPanel);
+            this.Controls.Add(this.TermsPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -665,5 +700,8 @@
         private System.Windows.Forms.Button AdminsControl;
         private System.Windows.Forms.Label results;
         private System.Windows.Forms.CheckBox ActivateFilter;
+        private System.Windows.Forms.CheckBox SelectTeacherSubject;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox ReminderText;
     }
 }

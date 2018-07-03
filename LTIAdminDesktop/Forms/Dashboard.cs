@@ -26,6 +26,8 @@ namespace LTIAdminDesktop.Forms
         private string SURVEY_URL_TEACHER = "SURVEY_URL_TEACHER";
         private string FULLSCREEN_TEACHER = "FULLSCREEN_TEACHER";
         private string SHOW_RULES_REMINDER = "SHOW_RULES_REMINDER";
+        private string RULES_REMINDER_TEXT = "RULES_REMINDER_TEXT";
+        private string ALLOW_SELECT_TEACHER_SUBJECT = "ALLOW_SELECT_TEACHER_SUBJECT";
 
         private string actual_survey_student_link = "";
         private string actual_survey_teacher_link = "";
@@ -90,6 +92,8 @@ namespace LTIAdminDesktop.Forms
             Configurations TeacherFullscreenCF = configs.Where(c => c.Key.ToUpper().Equals(FULLSCREEN_TEACHER)).FirstOrDefault();
             Configurations StudentLinkCF = configs.Where(c => c.Key.ToUpper().Equals(SURVEY_URL_STUDENT)).FirstOrDefault();
             Configurations TeacherLinkCF = configs.Where(c => c.Key.ToUpper().Equals(SURVEY_URL_TEACHER)).FirstOrDefault();
+            Configurations AllowSelectTeacherSubjectCF = configs.Where(c => c.Key.ToUpper().Equals(ALLOW_SELECT_TEACHER_SUBJECT)).FirstOrDefault();
+            Configurations ReminderTextCF = configs.Where(c => c.Key.ToUpper().Equals(RULES_REMINDER_TEXT)).FirstOrDefault();
 
             // Terms configurations
             if (AcceptTermsPeriod.Checked)
@@ -108,6 +112,25 @@ namespace LTIAdminDesktop.Forms
             {
                 ShowRulesReminderCF.Value = FALSE;
             }
+            if (SelectTeacherSubject.Checked)
+            {
+                AllowSelectTeacherSubjectCF.Value = TRUE;
+            }
+            else
+            {
+                AllowSelectTeacherSubjectCF.Value = FALSE;
+            }
+
+            if (!ReminderText.Text.Equals("") && ShowRulesReminder.Checked)
+            {
+                ReminderTextCF.Value = ReminderText.Text;
+            }
+            else
+            {
+                MessageBox.Show("El texto del recordatorio no puede estar vacío.");
+                return;
+            }
+            
 
             // Survey configurations
             if (ActivateSurvey.Checked)
@@ -220,7 +243,6 @@ namespace LTIAdminDesktop.Forms
                         SurveyLinkTeacher.Text = val;
                         actual_survey_teacher_link = val;
                     }
-
                 }
                 else if (config.Key.ToUpper().Equals(ACCEPT_TERMS))
                 {
@@ -236,6 +258,17 @@ namespace LTIAdminDesktop.Forms
                         ShowRulesReminder.Checked = true;
                     }
                 }
+                else if (config.Key.ToUpper().Equals(ALLOW_SELECT_TEACHER_SUBJECT))
+                {
+                    if (val.ToUpper().Equals(TRUE))
+                    {
+                        SelectTeacherSubject.Checked = true;
+                    }
+                }
+                else if (config.Key.ToUpper().Equals(RULES_REMINDER_TEXT))
+                {
+                    ReminderText.Text = val;
+                }
             }
         }
         /**
@@ -250,7 +283,6 @@ namespace LTIAdminDesktop.Forms
             SurveyControl.ForeColor = Color.WhiteSmoke;
             lbPantallaPrincipal.Text = "Control de Encuestas";
             //---
-
         }
 
         private void TermsControl_Click(object sender, EventArgs e)
