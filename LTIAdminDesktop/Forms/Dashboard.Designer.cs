@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbPantallaPrincipal = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
@@ -422,9 +422,9 @@
             this.TermsPanel.Controls.Add(this.PrintReport);
             this.TermsPanel.Controls.Add(this.SaveReport);
             this.TermsPanel.Controls.Add(this.ReportBox);
-            this.TermsPanel.Location = new System.Drawing.Point(206, 135);
+            this.TermsPanel.Location = new System.Drawing.Point(206, 109);
             this.TermsPanel.Name = "TermsPanel";
-            this.TermsPanel.Size = new System.Drawing.Size(941, 551);
+            this.TermsPanel.Size = new System.Drawing.Size(941, 577);
             this.TermsPanel.TabIndex = 3;
             // 
             // ActivateFilter
@@ -584,15 +584,15 @@
             this.ReportBox.BackgroundColor = System.Drawing.Color.White;
             this.ReportBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ReportBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle3;
             this.ReportBox.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ReportBox.GridColor = System.Drawing.Color.DarkRed;
             this.ReportBox.Location = new System.Drawing.Point(6, 58);
