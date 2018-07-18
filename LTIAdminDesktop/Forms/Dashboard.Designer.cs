@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbPantallaPrincipal = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
@@ -41,6 +41,9 @@
             this.SurveyControl = new System.Windows.Forms.Button();
             this.TermsControl = new System.Windows.Forms.Button();
             this.ConfigurationPanel = new System.Windows.Forms.Panel();
+            this.SelectTeacherSubject = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ReminderText = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.OpenTeacherSurveyFullscreen = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -71,9 +74,7 @@
             this.PrintReport = new System.Windows.Forms.Button();
             this.SaveReport = new System.Windows.Forms.Button();
             this.ReportBox = new System.Windows.Forms.DataGridView();
-            this.ReminderText = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.SelectTeacherSubject = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
@@ -248,10 +249,39 @@
             this.ConfigurationPanel.Controls.Add(this.AcceptTermsPeriod);
             this.ConfigurationPanel.Controls.Add(this.ActivateSurvey);
             this.ConfigurationPanel.Controls.Add(this.label5);
-            this.ConfigurationPanel.Location = new System.Drawing.Point(200, 109);
+            this.ConfigurationPanel.Location = new System.Drawing.Point(206, 109);
             this.ConfigurationPanel.Name = "ConfigurationPanel";
-            this.ConfigurationPanel.Size = new System.Drawing.Size(947, 577);
+            this.ConfigurationPanel.Size = new System.Drawing.Size(941, 577);
             this.ConfigurationPanel.TabIndex = 2;
+            // 
+            // SelectTeacherSubject
+            // 
+            this.SelectTeacherSubject.AutoSize = true;
+            this.SelectTeacherSubject.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectTeacherSubject.Location = new System.Drawing.Point(54, 190);
+            this.SelectTeacherSubject.Name = "SelectTeacherSubject";
+            this.SelectTeacherSubject.Size = new System.Drawing.Size(328, 24);
+            this.SelectTeacherSubject.TabIndex = 15;
+            this.SelectTeacherSubject.Text = "Permitir seleccionar asignatura y/o profesor.";
+            this.SelectTeacherSubject.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(51, 296);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(153, 18);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Texto en el recordatorio:";
+            // 
+            // ReminderText
+            // 
+            this.ReminderText.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReminderText.Location = new System.Drawing.Point(54, 317);
+            this.ReminderText.Name = "ReminderText";
+            this.ReminderText.Size = new System.Drawing.Size(364, 23);
+            this.ReminderText.TabIndex = 13;
             // 
             // button1
             // 
@@ -584,15 +614,15 @@
             this.ReportBox.BackgroundColor = System.Drawing.Color.White;
             this.ReportBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ReportBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle2;
             this.ReportBox.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ReportBox.GridColor = System.Drawing.Color.DarkRed;
             this.ReportBox.Location = new System.Drawing.Point(6, 58);
@@ -600,44 +630,26 @@
             this.ReportBox.Size = new System.Drawing.Size(929, 454);
             this.ReportBox.TabIndex = 0;
             // 
-            // ReminderText
+            // label12
             // 
-            this.ReminderText.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReminderText.Location = new System.Drawing.Point(54, 317);
-            this.ReminderText.Name = "ReminderText";
-            this.ReminderText.Size = new System.Drawing.Size(364, 23);
-            this.ReminderText.TabIndex = 13;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(51, 296);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(153, 18);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "Texto en el recordatorio:";
-            // 
-            // SelectTeacherSubject
-            // 
-            this.SelectTeacherSubject.AutoSize = true;
-            this.SelectTeacherSubject.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectTeacherSubject.Location = new System.Drawing.Point(54, 190);
-            this.SelectTeacherSubject.Name = "SelectTeacherSubject";
-            this.SelectTeacherSubject.Size = new System.Drawing.Size(328, 24);
-            this.SelectTeacherSubject.TabIndex = 15;
-            this.SelectTeacherSubject.Text = "Permitir seleccionar asignatura y/o profesor.";
-            this.SelectTeacherSubject.UseVisualStyleBackColor = true;
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(216, 133);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(191, 24);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "EN CONSTRUCCION...";
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 686);
-            this.Controls.Add(this.ConfigurationPanel);
             this.Controls.Add(this.TermsPanel);
+            this.Controls.Add(this.ConfigurationPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label12);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "Dashboard";
@@ -653,6 +665,7 @@
             this.TermsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -703,5 +716,6 @@
         private System.Windows.Forms.CheckBox SelectTeacherSubject;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox ReminderText;
+        private System.Windows.Forms.Label label12;
     }
 }
