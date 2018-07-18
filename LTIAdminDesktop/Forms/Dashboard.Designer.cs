@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbPantallaPrincipal = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
@@ -614,15 +615,15 @@
             this.ReportBox.BackgroundColor = System.Drawing.Color.White;
             this.ReportBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ReportBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle3;
             this.ReportBox.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ReportBox.GridColor = System.Drawing.Color.DarkRed;
             this.ReportBox.Location = new System.Drawing.Point(6, 58);
@@ -651,6 +652,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label12);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
