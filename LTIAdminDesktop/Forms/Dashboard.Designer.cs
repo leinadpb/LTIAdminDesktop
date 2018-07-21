@@ -77,6 +77,7 @@
             this.ReportBox = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
             this.TrimestresBtn = new System.Windows.Forms.Button();
+            this.NormasBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
@@ -129,6 +130,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.NormasBtn);
             this.panel2.Controls.Add(this.TrimestresBtn);
             this.panel2.Controls.Add(this.AdminsControl);
             this.panel2.Controls.Add(this.DashControl);
@@ -194,7 +196,7 @@
             this.ConfigControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConfigControl.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfigControl.ForeColor = System.Drawing.Color.DarkRed;
-            this.ConfigControl.Location = new System.Drawing.Point(3, 199);
+            this.ConfigControl.Location = new System.Drawing.Point(6, 237);
             this.ConfigControl.Name = "ConfigControl";
             this.ConfigControl.Size = new System.Drawing.Size(188, 32);
             this.ConfigControl.TabIndex = 2;
@@ -659,6 +661,21 @@
             this.TrimestresBtn.UseVisualStyleBackColor = false;
             this.TrimestresBtn.Click += new System.EventHandler(this.TrimestresBtn_Click);
             // 
+            // NormasBtn
+            // 
+            this.NormasBtn.BackColor = System.Drawing.Color.White;
+            this.NormasBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NormasBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NormasBtn.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NormasBtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.NormasBtn.Location = new System.Drawing.Point(6, 199);
+            this.NormasBtn.Name = "NormasBtn";
+            this.NormasBtn.Size = new System.Drawing.Size(188, 32);
+            this.NormasBtn.TabIndex = 7;
+            this.NormasBtn.Text = "Normas";
+            this.NormasBtn.UseVisualStyleBackColor = false;
+            this.NormasBtn.Click += new System.EventHandler(this.NormasBtn_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -738,5 +755,6 @@
         private System.Windows.Forms.TextBox ReminderText;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button TrimestresBtn;
+        private System.Windows.Forms.Button NormasBtn;
     }
 }

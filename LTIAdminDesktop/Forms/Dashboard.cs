@@ -539,5 +539,11 @@ namespace LTIAdminDesktop.Forms
             TrimestresForm TForm = new TrimestresForm(_context);
             TForm.ShowDialog();
         }
+
+        private void NormasBtn_Click(object sender, EventArgs e)
+        {
+            NormasForm NForm = new NormasForm(_context);
+            NForm.ShowDialog();
+        }
     }
 }

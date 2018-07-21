@@ -276,6 +276,12 @@
     <Compile Include="Forms\AddAdmin.Designer.cs">
       <DependentUpon>AddAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddNorma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddNorma.Designer.cs">
+      <DependentUpon>AddNorma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddTrimestre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,11 +306,29 @@
     <Compile Include="Forms\DeleteAdmin.Designer.cs">
       <DependentUpon>DeleteAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DeleteNorma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DeleteNorma.Designer.cs">
+      <DependentUpon>DeleteNorma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ModifyNorma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ModifyNorma.Designer.cs">
+      <DependentUpon>ModifyNorma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ModifyTrimestre.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\ModifyTrimestre.Designer.cs">
       <DependentUpon>ModifyTrimestre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NormasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NormasForm.Designer.cs">
+      <DependentUpon>NormasForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TrimestresForm.cs">
       <SubType>Form</SubType>
@@ -330,6 +354,9 @@
     <EmbeddedResource Include="Forms\AddAdmin.resx">
       <DependentUpon>AddAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddNorma.resx">
+      <DependentUpon>AddNorma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddTrimestre.resx">
       <DependentUpon>AddTrimestre.cs</DependentUpon>
     </EmbeddedResource>
@@ -342,8 +369,17 @@
     <EmbeddedResource Include="Forms\DeleteAdmin.resx">
       <DependentUpon>DeleteAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DeleteNorma.resx">
+      <DependentUpon>DeleteNorma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ModifyNorma.resx">
+      <DependentUpon>ModifyNorma.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ModifyTrimestre.resx">
       <DependentUpon>ModifyTrimestre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NormasForm.resx">
+      <DependentUpon>NormasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TrimestresForm.resx">
       <DependentUpon>TrimestresForm.cs</DependentUpon>
