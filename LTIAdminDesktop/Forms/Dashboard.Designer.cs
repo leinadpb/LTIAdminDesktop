@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbPantallaPrincipal = new System.Windows.Forms.Label();
@@ -76,6 +76,7 @@
             this.SaveReport = new System.Windows.Forms.Button();
             this.ReportBox = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
+            this.TrimestresBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
@@ -128,6 +129,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel2.Controls.Add(this.TrimestresBtn);
             this.panel2.Controls.Add(this.AdminsControl);
             this.panel2.Controls.Add(this.DashControl);
             this.panel2.Controls.Add(this.ExitControl);
@@ -192,7 +194,7 @@
             this.ConfigControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ConfigControl.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConfigControl.ForeColor = System.Drawing.Color.DarkRed;
-            this.ConfigControl.Location = new System.Drawing.Point(6, 161);
+            this.ConfigControl.Location = new System.Drawing.Point(3, 199);
             this.ConfigControl.Name = "ConfigControl";
             this.ConfigControl.Size = new System.Drawing.Size(188, 32);
             this.ConfigControl.TabIndex = 2;
@@ -615,21 +617,22 @@
             this.ReportBox.BackgroundColor = System.Drawing.Color.White;
             this.ReportBox.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ReportBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(2);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(2);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ReportBox.DefaultCellStyle = dataGridViewCellStyle1;
             this.ReportBox.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.ReportBox.GridColor = System.Drawing.Color.DarkRed;
             this.ReportBox.Location = new System.Drawing.Point(6, 58);
             this.ReportBox.Name = "ReportBox";
             this.ReportBox.Size = new System.Drawing.Size(929, 454);
             this.ReportBox.TabIndex = 0;
+            this.ReportBox.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ReportBox_CellContentClick);
             // 
             // label12
             // 
@@ -640,6 +643,21 @@
             this.label12.Size = new System.Drawing.Size(191, 24);
             this.label12.TabIndex = 4;
             this.label12.Text = "EN CONSTRUCCION...";
+            // 
+            // TrimestresBtn
+            // 
+            this.TrimestresBtn.BackColor = System.Drawing.Color.White;
+            this.TrimestresBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TrimestresBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TrimestresBtn.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrimestresBtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.TrimestresBtn.Location = new System.Drawing.Point(6, 161);
+            this.TrimestresBtn.Name = "TrimestresBtn";
+            this.TrimestresBtn.Size = new System.Drawing.Size(188, 32);
+            this.TrimestresBtn.TabIndex = 6;
+            this.TrimestresBtn.Text = "Trimestres";
+            this.TrimestresBtn.UseVisualStyleBackColor = false;
+            this.TrimestresBtn.Click += new System.EventHandler(this.TrimestresBtn_Click);
             // 
             // Dashboard
             // 
@@ -719,5 +737,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox ReminderText;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button TrimestresBtn;
     }
 }

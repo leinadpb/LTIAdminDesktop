@@ -528,5 +528,16 @@ namespace LTIAdminDesktop.Forms
                 textBox1.Enabled = false;
             }
         }
+
+        private void ReportBox_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void TrimestresBtn_Click(object sender, EventArgs e)
+        {
+            TrimestresForm TForm = new TrimestresForm(_context);
+            TForm.ShowDialog();
+        }
     }
 }
