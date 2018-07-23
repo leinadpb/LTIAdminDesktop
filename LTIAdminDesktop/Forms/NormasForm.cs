@@ -45,24 +45,22 @@ namespace LTIAdminDesktop.Forms
 
         private void AddNorma_Click(object sender, EventArgs e)
         {
-
-
-
+            AddNorma ANorma = new AddNorma(_context);
+            ANorma.ShowDialog();
             PopulatList();
         }
 
         private void ModifyNorma_Click(object sender, EventArgs e)
         {
-
-
-
+            ModifyNorma MNorma = new ModifyNorma(_context);
+            MNorma.ShowDialog();
             PopulatList();
         }
 
         private void DeleteNorma_Click(object sender, EventArgs e)
         {
-
-
+            DeleteNorma DNorma = new DeleteNorma(_context);
+            DNorma.ShowDialog();
             PopulatList();
         }
 
