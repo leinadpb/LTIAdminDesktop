@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DeleteNorma = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CloseForm = new System.Windows.Forms.Button();
             this.NormasList = new System.Windows.Forms.DataGridView();
             this.ModifyNorma = new System.Windows.Forms.Button();
             this.AddNorma = new System.Windows.Forms.Button();
-            this.DeleteNorma = new System.Windows.Forms.Button();
+            this.NormaID = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NormasList)).BeginInit();
             this.SuspendLayout();
@@ -42,6 +43,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.NormaID);
             this.panel1.Controls.Add(this.DeleteNorma);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.CloseForm);
@@ -52,6 +54,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(836, 455);
             this.panel1.TabIndex = 19;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // DeleteNorma
+            // 
+            this.DeleteNorma.BackColor = System.Drawing.Color.DarkRed;
+            this.DeleteNorma.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DeleteNorma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteNorma.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteNorma.ForeColor = System.Drawing.Color.White;
+            this.DeleteNorma.Location = new System.Drawing.Point(519, 407);
+            this.DeleteNorma.Name = "DeleteNorma";
+            this.DeleteNorma.Size = new System.Drawing.Size(96, 36);
+            this.DeleteNorma.TabIndex = 17;
+            this.DeleteNorma.Text = "Eliminar";
+            this.DeleteNorma.UseVisualStyleBackColor = false;
+            this.DeleteNorma.Click += new System.EventHandler(this.DeleteNorma_Click);
             // 
             // label1
             // 
@@ -95,6 +113,7 @@
             this.NormasList.ReadOnly = true;
             this.NormasList.Size = new System.Drawing.Size(799, 340);
             this.NormasList.TabIndex = 13;
+            this.NormasList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.NormasList_RowEnter);
             // 
             // ModifyNorma
             // 
@@ -126,20 +145,13 @@
             this.AddNorma.UseVisualStyleBackColor = false;
             this.AddNorma.Click += new System.EventHandler(this.AddNorma_Click);
             // 
-            // DeleteNorma
+            // NormaID
             // 
-            this.DeleteNorma.BackColor = System.Drawing.Color.DarkRed;
-            this.DeleteNorma.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DeleteNorma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeleteNorma.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteNorma.ForeColor = System.Drawing.Color.White;
-            this.DeleteNorma.Location = new System.Drawing.Point(519, 407);
-            this.DeleteNorma.Name = "DeleteNorma";
-            this.DeleteNorma.Size = new System.Drawing.Size(96, 36);
-            this.DeleteNorma.TabIndex = 17;
-            this.DeleteNorma.Text = "Eliminar";
-            this.DeleteNorma.UseVisualStyleBackColor = false;
-            this.DeleteNorma.Click += new System.EventHandler(this.DeleteNorma_Click);
+            this.NormaID.AutoSize = true;
+            this.NormaID.Location = new System.Drawing.Point(20, 407);
+            this.NormaID.Name = "NormaID";
+            this.NormaID.Size = new System.Drawing.Size(0, 13);
+            this.NormaID.TabIndex = 18;
             // 
             // NormasForm
             // 
@@ -171,5 +183,6 @@
         private System.Windows.Forms.DataGridView NormasList;
         private System.Windows.Forms.Button ModifyNorma;
         private System.Windows.Forms.Button AddNorma;
+        private System.Windows.Forms.Label NormaID;
     }
 }
