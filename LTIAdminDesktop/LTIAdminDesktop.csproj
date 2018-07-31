@@ -394,6 +394,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -411,6 +412,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LOGO_APP.ico" />
+    <None Include="Resources\loading-app.gif" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />

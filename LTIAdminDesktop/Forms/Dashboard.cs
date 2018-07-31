@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LTIAdminDesktop.Forms;
@@ -46,8 +47,10 @@ namespace LTIAdminDesktop.Forms
         /**
          * CONFIGURAITON PANEL  ---- START
          * */
-        private void ConfigControl_Click(object sender, EventArgs e)
+        private async void ConfigControl_Click(object sender, EventArgs e)
         {
+            loadingIcon.Visible = true;
+
             ResetFormLayout();
             ConfigurationPanel.Show();
             //---
@@ -55,30 +58,35 @@ namespace LTIAdminDesktop.Forms
             ConfigControl.ForeColor = Color.WhiteSmoke;
             lbPantallaPrincipal.Text = "Configuraciones Globales";
             label1.Text = "Configuraciones";
-            //--
-            List<Configurations> configs = _context.Configurations.ToList();
-            GetConfigInfo(configs);
-            //---
-            if (!ActivateSurvey.Checked)
-            {
-                SurveyLink.Enabled = false;
-                OpenStudentSurveyFullscreen.Enabled = false;
-            }
-            else
-            {
-                SurveyLink.Enabled = true;
-                OpenStudentSurveyFullscreen.Enabled = true;
-            }
-            if (!ActivateSurveyTeacher.Checked)
-            {
-                SurveyLinkTeacher.Enabled = false;
-                OpenTeacherSurveyFullscreen.Enabled = false;
-            }
-            else
-            {
-                SurveyLinkTeacher.Enabled = true;
-                OpenTeacherSurveyFullscreen.Enabled = true;
-            }
+
+            await Task.Run(() => {
+                //--
+                List<Configurations> configs = _context.Configurations.ToList();
+                GetConfigInfo(configs);
+                //---
+                if (!ActivateSurvey.Checked)
+                {
+                    SurveyLink.Enabled = false;
+                    OpenStudentSurveyFullscreen.Enabled = false;
+                }
+                else
+                {
+                    SurveyLink.Enabled = true;
+                    OpenStudentSurveyFullscreen.Enabled = true;
+                }
+                if (!ActivateSurveyTeacher.Checked)
+                {
+                    SurveyLinkTeacher.Enabled = false;
+                    OpenTeacherSurveyFullscreen.Enabled = false;
+                }
+                else
+                {
+                    SurveyLinkTeacher.Enabled = true;
+                    OpenTeacherSurveyFullscreen.Enabled = true;
+                }
+            });
+
+            loadingIcon.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e) // Save Configurations options
@@ -204,21 +212,27 @@ namespace LTIAdminDesktop.Forms
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        ActivateSurvey.Checked = true;
+                        ActivateSurvey.BeginInvoke(new Action(() => {
+                            ActivateSurvey.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(SURVEY_TIME_TEACHER))
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        ActivateSurveyTeacher.Checked = true;
+                        ActivateSurveyTeacher.BeginInvoke(new Action(() => {
+                            ActivateSurveyTeacher.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(SURVEY_URL_STUDENT))
                 {
                     if (!val.Equals(""))
                     {
-                        SurveyLink.Text = val;
+                        SurveyLink.BeginInvoke(new Action(() => {
+                            SurveyLink.Text = val;
+                        }));
                         actual_survey_student_link = val;
                     }
                 }
@@ -226,21 +240,27 @@ namespace LTIAdminDesktop.Forms
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        OpenStudentSurveyFullscreen.Checked = true;
+                        OpenStudentSurveyFullscreen.BeginInvoke(new Action(() => {
+                            OpenStudentSurveyFullscreen.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(FULLSCREEN_TEACHER))
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        OpenTeacherSurveyFullscreen.Checked = true;
+                        OpenTeacherSurveyFullscreen.BeginInvoke(new Action(() => {
+                            OpenTeacherSurveyFullscreen.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(SURVEY_URL_TEACHER))
                 {
                     if (!val.Equals(""))
                     {
-                        SurveyLinkTeacher.Text = val;
+                        SurveyLinkTeacher.BeginInvoke(new Action(() => {
+                            SurveyLinkTeacher.Text = val;
+                        }));
                         actual_survey_teacher_link = val;
                     }
                 }
@@ -248,26 +268,35 @@ namespace LTIAdminDesktop.Forms
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        AcceptTermsPeriod.Checked = true;
+                        AcceptTermsPeriod.BeginInvoke(new Action(() =>
+                        {
+                            AcceptTermsPeriod.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(SHOW_RULES_REMINDER))
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        ShowRulesReminder.Checked = true;
+                        ShowRulesReminder.BeginInvoke(new Action(() => {
+                            ShowRulesReminder.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(ALLOW_SELECT_TEACHER_SUBJECT))
                 {
                     if (val.ToUpper().Equals(TRUE))
                     {
-                        SelectTeacherSubject.Checked = true;
+                        SelectTeacherSubject.BeginInvoke(new Action(() => {
+                            SelectTeacherSubject.Checked = true;
+                        }));
                     }
                 }
                 else if (config.Key.ToUpper().Equals(RULES_REMINDER_TEXT))
                 {
-                    ReminderText.Text = val;
+                    ReminderText.BeginInvoke(new Action(() => {
+                        ReminderText.Text = val;
+                    }));
                 }
             }
         }
@@ -285,7 +314,15 @@ namespace LTIAdminDesktop.Forms
             //---
         }
 
-        private void TermsControl_Click(object sender, EventArgs e)
+        private async void TermsControl_Click(object sender, EventArgs e)
+        {
+            loadingIcon.Visible = true;
+            await ShowTermsForm();
+            loadingIcon.Visible = false;
+
+        }
+
+        private async Task ShowTermsForm()
         {
             ResetFormLayout();
             TermsPanel.Show();
@@ -312,18 +349,19 @@ namespace LTIAdminDesktop.Forms
             //---
             if (PopulateDataGrid)
             {
-                
+
                 for (int i = 0; i < columns.Length; i++)
                 {
                     ReportBox.Columns.Add(columns[i], columns[i]);
                 }
                 PopulateDataGrid = false;
             }
-            if (!HaveFilledLists)
-            {
-                fillLists();
-            }
-
+            await Task.Run(() => {
+                if (!HaveFilledLists)
+                {
+                    fillLists();
+                }
+            });
         }
         private void DashControl_Click(object sender, EventArgs e)
         {
@@ -353,6 +391,14 @@ namespace LTIAdminDesktop.Forms
 
             //---
             ResetFormLayout();
+
+            // Disable Survey Management View (Not yet implemented!)
+            SurveyControl.Enabled = false;
+
+            // Perform Click in Dashboard
+            DashControl.PerformClick();
+
+            loadingIcon.Visible = false;
         }
         private void ResetFormLayout()
         {
@@ -375,13 +421,14 @@ namespace LTIAdminDesktop.Forms
             TermsPanel.Hide();
 
             //Show Dashboard
-        
+
 
             //Other
             label1.Text = "";
             ReportBox.Rows.Clear();
             results.Text = "";
             ActivateFilter.Checked = false;
+
         }
 
         private void ActivateSurvey_CheckedChanged(object sender, EventArgs e)
@@ -424,22 +471,40 @@ namespace LTIAdminDesktop.Forms
             teachs.Insert(0, new Teachers { TeacherId = -1, DisplayName = "Seleccione ---"});
             trimes.Insert(0, new Trimestres { TrimestreId = -1, Name = "Seleccione ---"});
 
-            ListTrimestres.DisplayMember = "Name";
-            ListTrimestres.ValueMember = "TrimestreID";
-            //ListTrimestres.Items.Add(0, new Trimestres { } );
-            ListTrimestres.DataSource = trimes;
+            ListTrimestres.BeginInvoke(new Action(() => {
+                ListTrimestres.DisplayMember = "Name";
+            }));
+            ListTrimestres.BeginInvoke(new Action(() => {
+                ListTrimestres.ValueMember = "TrimestreID";
+            }));
+            ListTrimestres.BeginInvoke(new Action(() => {
+                ListTrimestres.DataSource = trimes;
+            }));
 
-            ListTeachers.DisplayMember = "DisplayName";
-            ListTeachers.ValueMember = "TeacherID";
-            // ListTeachers.Items.Add("Seleccione ---");
-            ListTeachers.DataSource = teachs;
+            ListTeachers.BeginInvoke(new Action(() => {
+                ListTeachers.DisplayMember = "DisplayName";
+            }));
+            ListTeachers.BeginInvoke(new Action(() => {
+                ListTeachers.ValueMember = "TeacherID";
+            }));
+            ListTeachers.BeginInvoke(new Action(() => {
+                ListTeachers.DataSource = teachs;
+            }));
 
-            ListSubjects.DisplayMember = "SubjectName";
-            ListSubjects.ValueMember = "SubjectID";
-            // ListSubjects.Items.Add("Seleccione ---");
-            ListSubjects.DataSource = asigs;
+            ListSubjects.BeginInvoke(new Action(() => {
+                ListSubjects.DisplayMember = "SubjectName";
+            }));
+            ListSubjects.BeginInvoke(new Action(() => {
+                ListSubjects.ValueMember = "SubjectID";
+            }));
+            ListSubjects.BeginInvoke(new Action(() => {
+                ListSubjects.DataSource = asigs;
+            }));
 
-            HaveFilledLists = true;
+            this.Invoke(new MethodInvoker(() => {
+                HaveFilledLists = true;
+            }));
+           // HaveFilledLists = true;
         }
 
         private void AdminsControl_Click(object sender, EventArgs e)

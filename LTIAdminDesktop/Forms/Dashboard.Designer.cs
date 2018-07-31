@@ -35,6 +35,8 @@
             this.lbTitle = new System.Windows.Forms.Label();
             this.SecondNavBack = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.NormasBtn = new System.Windows.Forms.Button();
+            this.TrimestresBtn = new System.Windows.Forms.Button();
             this.AdminsControl = new System.Windows.Forms.Button();
             this.DashControl = new System.Windows.Forms.Button();
             this.ExitControl = new System.Windows.Forms.Button();
@@ -76,18 +78,19 @@
             this.SaveReport = new System.Windows.Forms.Button();
             this.ReportBox = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
-            this.TrimestresBtn = new System.Windows.Forms.Button();
-            this.NormasBtn = new System.Windows.Forms.Button();
+            this.loadingIcon = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
             this.TermsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkRed;
+            this.panel1.Controls.Add(this.loadingIcon);
             this.panel1.Controls.Add(this.lbPantallaPrincipal);
             this.panel1.Controls.Add(this.lbTitle);
             this.panel1.Controls.Add(this.SecondNavBack);
@@ -143,6 +146,36 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 586);
             this.panel2.TabIndex = 1;
+            // 
+            // NormasBtn
+            // 
+            this.NormasBtn.BackColor = System.Drawing.Color.White;
+            this.NormasBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.NormasBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NormasBtn.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NormasBtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.NormasBtn.Location = new System.Drawing.Point(6, 199);
+            this.NormasBtn.Name = "NormasBtn";
+            this.NormasBtn.Size = new System.Drawing.Size(188, 32);
+            this.NormasBtn.TabIndex = 7;
+            this.NormasBtn.Text = "Normas";
+            this.NormasBtn.UseVisualStyleBackColor = false;
+            this.NormasBtn.Click += new System.EventHandler(this.NormasBtn_Click);
+            // 
+            // TrimestresBtn
+            // 
+            this.TrimestresBtn.BackColor = System.Drawing.Color.White;
+            this.TrimestresBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.TrimestresBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TrimestresBtn.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TrimestresBtn.ForeColor = System.Drawing.Color.DarkRed;
+            this.TrimestresBtn.Location = new System.Drawing.Point(6, 161);
+            this.TrimestresBtn.Name = "TrimestresBtn";
+            this.TrimestresBtn.Size = new System.Drawing.Size(188, 32);
+            this.TrimestresBtn.TabIndex = 6;
+            this.TrimestresBtn.Text = "Trimestres";
+            this.TrimestresBtn.UseVisualStyleBackColor = false;
+            this.TrimestresBtn.Click += new System.EventHandler(this.TrimestresBtn_Click);
             // 
             // AdminsControl
             // 
@@ -457,9 +490,9 @@
             this.TermsPanel.Controls.Add(this.PrintReport);
             this.TermsPanel.Controls.Add(this.SaveReport);
             this.TermsPanel.Controls.Add(this.ReportBox);
-            this.TermsPanel.Location = new System.Drawing.Point(206, 109);
+            this.TermsPanel.Location = new System.Drawing.Point(209, 112);
             this.TermsPanel.Name = "TermsPanel";
-            this.TermsPanel.Size = new System.Drawing.Size(941, 577);
+            this.TermsPanel.Size = new System.Drawing.Size(938, 574);
             this.TermsPanel.TabIndex = 3;
             // 
             // ActivateFilter
@@ -642,39 +675,19 @@
             this.label12.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(216, 133);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(191, 24);
+            this.label12.Size = new System.Drawing.Size(265, 24);
             this.label12.TabIndex = 4;
-            this.label12.Text = "EN CONSTRUCCION...";
+            this.label12.Text = "Esto es lo que puedes hacer...";
             // 
-            // TrimestresBtn
+            // loadingIcon
             // 
-            this.TrimestresBtn.BackColor = System.Drawing.Color.White;
-            this.TrimestresBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.TrimestresBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.TrimestresBtn.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TrimestresBtn.ForeColor = System.Drawing.Color.DarkRed;
-            this.TrimestresBtn.Location = new System.Drawing.Point(6, 161);
-            this.TrimestresBtn.Name = "TrimestresBtn";
-            this.TrimestresBtn.Size = new System.Drawing.Size(188, 32);
-            this.TrimestresBtn.TabIndex = 6;
-            this.TrimestresBtn.Text = "Trimestres";
-            this.TrimestresBtn.UseVisualStyleBackColor = false;
-            this.TrimestresBtn.Click += new System.EventHandler(this.TrimestresBtn_Click);
-            // 
-            // NormasBtn
-            // 
-            this.NormasBtn.BackColor = System.Drawing.Color.White;
-            this.NormasBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NormasBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NormasBtn.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NormasBtn.ForeColor = System.Drawing.Color.DarkRed;
-            this.NormasBtn.Location = new System.Drawing.Point(6, 199);
-            this.NormasBtn.Name = "NormasBtn";
-            this.NormasBtn.Size = new System.Drawing.Size(188, 32);
-            this.NormasBtn.TabIndex = 7;
-            this.NormasBtn.Text = "Normas";
-            this.NormasBtn.UseVisualStyleBackColor = false;
-            this.NormasBtn.Click += new System.EventHandler(this.NormasBtn_Click);
+            this.loadingIcon.Image = global::LTIAdminDesktop.Properties.Resources.loading_app;
+            this.loadingIcon.Location = new System.Drawing.Point(1087, 12);
+            this.loadingIcon.Name = "loadingIcon";
+            this.loadingIcon.Size = new System.Drawing.Size(48, 47);
+            this.loadingIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadingIcon.TabIndex = 3;
+            this.loadingIcon.TabStop = false;
             // 
             // Dashboard
             // 
@@ -701,6 +714,7 @@
             this.TermsPanel.ResumeLayout(false);
             this.TermsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -756,5 +770,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button TrimestresBtn;
         private System.Windows.Forms.Button NormasBtn;
+        private System.Windows.Forms.PictureBox loadingIcon;
     }
 }
