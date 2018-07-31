@@ -78,13 +78,23 @@
             this.SaveReport = new System.Windows.Forms.Button();
             this.ReportBox = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.loadingIcon = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
             this.TermsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -287,9 +297,9 @@
             this.ConfigurationPanel.Controls.Add(this.AcceptTermsPeriod);
             this.ConfigurationPanel.Controls.Add(this.ActivateSurvey);
             this.ConfigurationPanel.Controls.Add(this.label5);
-            this.ConfigurationPanel.Location = new System.Drawing.Point(206, 109);
+            this.ConfigurationPanel.Location = new System.Drawing.Point(206, 106);
             this.ConfigurationPanel.Name = "ConfigurationPanel";
-            this.ConfigurationPanel.Size = new System.Drawing.Size(941, 577);
+            this.ConfigurationPanel.Size = new System.Drawing.Size(941, 580);
             this.ConfigurationPanel.TabIndex = 2;
             // 
             // SelectTeacherSubject
@@ -490,9 +500,9 @@
             this.TermsPanel.Controls.Add(this.PrintReport);
             this.TermsPanel.Controls.Add(this.SaveReport);
             this.TermsPanel.Controls.Add(this.ReportBox);
-            this.TermsPanel.Location = new System.Drawing.Point(209, 112);
+            this.TermsPanel.Location = new System.Drawing.Point(209, 109);
             this.TermsPanel.Name = "TermsPanel";
-            this.TermsPanel.Size = new System.Drawing.Size(938, 574);
+            this.TermsPanel.Size = new System.Drawing.Size(938, 577);
             this.TermsPanel.TabIndex = 3;
             // 
             // ActivateFilter
@@ -679,6 +689,26 @@
             this.label12.TabIndex = 4;
             this.label12.Text = "Esto es lo que puedes hacer...";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::LTIAdminDesktop.Properties.Resources.add_admin;
+            this.pictureBox2.Location = new System.Drawing.Point(692, 190);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(439, 291);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LTIAdminDesktop.Properties.Resources.search;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 195);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(430, 256);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
             // loadingIcon
             // 
             this.loadingIcon.Image = global::LTIAdminDesktop.Properties.Resources.loading_app;
@@ -688,6 +718,36 @@
             this.loadingIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.loadingIcon.TabIndex = 3;
             this.loadingIcon.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::LTIAdminDesktop.Properties.Resources.terms;
+            this.pictureBox3.Location = new System.Drawing.Point(221, 476);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(294, 181);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 7;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::LTIAdminDesktop.Properties.Resources.trimestres;
+            this.pictureBox4.Location = new System.Drawing.Point(529, 476);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(300, 181);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 8;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::LTIAdminDesktop.Properties.Resources.settings;
+            this.pictureBox5.Location = new System.Drawing.Point(840, 476);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(294, 181);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 9;
+            this.pictureBox5.TabStop = false;
             // 
             // Dashboard
             // 
@@ -699,6 +759,11 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label12);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -714,7 +779,12 @@
             this.TermsPanel.ResumeLayout(false);
             this.TermsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -771,5 +841,10 @@
         private System.Windows.Forms.Button TrimestresBtn;
         private System.Windows.Forms.Button NormasBtn;
         private System.Windows.Forms.PictureBox loadingIcon;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }

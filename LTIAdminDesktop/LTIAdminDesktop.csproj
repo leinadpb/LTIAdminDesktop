@@ -412,6 +412,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LOGO_APP.ico" />
+    <None Include="Resources\trimestres.png" />
+    <None Include="Resources\terms.png" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\add-admin.png" />
+    <None Include="Resources\search.png" />
     <None Include="Resources\loading-app.gif" />
   </ItemGroup>
   <ItemGroup>
