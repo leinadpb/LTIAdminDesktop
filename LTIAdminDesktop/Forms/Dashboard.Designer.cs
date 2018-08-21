@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.loadingIcon = new System.Windows.Forms.PictureBox();
             this.lbPantallaPrincipal = new System.Windows.Forms.Label();
             this.lbTitle = new System.Windows.Forms.Label();
             this.SecondNavBack = new System.Windows.Forms.Panel();
@@ -78,23 +79,35 @@
             this.SaveReport = new System.Windows.Forms.Button();
             this.ReportBox = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.loadingIcon = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox4 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox5 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox6 = new System.Windows.Forms.RichTextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.PrinterList = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).BeginInit();
             this.panel2.SuspendLayout();
             this.ConfigurationPanel.SuspendLayout();
             this.TermsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -109,6 +122,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1147, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // loadingIcon
+            // 
+            this.loadingIcon.Image = global::LTIAdminDesktop.Properties.Resources.loading_app;
+            this.loadingIcon.Location = new System.Drawing.Point(1087, 12);
+            this.loadingIcon.Name = "loadingIcon";
+            this.loadingIcon.Size = new System.Drawing.Size(48, 47);
+            this.loadingIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadingIcon.TabIndex = 3;
+            this.loadingIcon.TabStop = false;
             // 
             // lbPantallaPrincipal
             // 
@@ -280,6 +303,8 @@
             // ConfigurationPanel
             // 
             this.ConfigurationPanel.BackColor = System.Drawing.Color.White;
+            this.ConfigurationPanel.Controls.Add(this.PrinterList);
+            this.ConfigurationPanel.Controls.Add(this.label18);
             this.ConfigurationPanel.Controls.Add(this.SelectTeacherSubject);
             this.ConfigurationPanel.Controls.Add(this.label11);
             this.ConfigurationPanel.Controls.Add(this.ReminderText);
@@ -297,9 +322,9 @@
             this.ConfigurationPanel.Controls.Add(this.AcceptTermsPeriod);
             this.ConfigurationPanel.Controls.Add(this.ActivateSurvey);
             this.ConfigurationPanel.Controls.Add(this.label5);
-            this.ConfigurationPanel.Location = new System.Drawing.Point(206, 106);
+            this.ConfigurationPanel.Location = new System.Drawing.Point(203, 109);
             this.ConfigurationPanel.Name = "ConfigurationPanel";
-            this.ConfigurationPanel.Size = new System.Drawing.Size(941, 580);
+            this.ConfigurationPanel.Size = new System.Drawing.Size(944, 577);
             this.ConfigurationPanel.TabIndex = 2;
             // 
             // SelectTeacherSubject
@@ -500,9 +525,9 @@
             this.TermsPanel.Controls.Add(this.PrintReport);
             this.TermsPanel.Controls.Add(this.SaveReport);
             this.TermsPanel.Controls.Add(this.ReportBox);
-            this.TermsPanel.Location = new System.Drawing.Point(209, 109);
+            this.TermsPanel.Location = new System.Drawing.Point(206, 112);
             this.TermsPanel.Name = "TermsPanel";
-            this.TermsPanel.Size = new System.Drawing.Size(938, 577);
+            this.TermsPanel.Size = new System.Drawing.Size(941, 574);
             this.TermsPanel.TabIndex = 3;
             // 
             // ActivateFilter
@@ -638,6 +663,7 @@
             this.PrintReport.TabIndex = 2;
             this.PrintReport.Text = "Imprimir";
             this.PrintReport.UseVisualStyleBackColor = false;
+            this.PrintReport.Click += new System.EventHandler(this.PrintReport_Click);
             // 
             // SaveReport
             // 
@@ -689,65 +715,221 @@
             this.label12.TabIndex = 4;
             this.label12.Text = "Esto es lo que puedes hacer...";
             // 
-            // pictureBox2
+            // pictureBox5
             // 
-            this.pictureBox2.Image = global::LTIAdminDesktop.Properties.Resources.add_admin;
-            this.pictureBox2.Location = new System.Drawing.Point(692, 190);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(439, 291);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox5.Image = global::LTIAdminDesktop.Properties.Resources.add_admin2;
+            this.pictureBox5.Location = new System.Drawing.Point(911, 176);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(215, 175);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 9;
+            this.pictureBox5.TabStop = false;
             // 
-            // pictureBox1
+            // pictureBox4
             // 
-            this.pictureBox1.Image = global::LTIAdminDesktop.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(225, 195);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(430, 256);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // loadingIcon
-            // 
-            this.loadingIcon.Image = global::LTIAdminDesktop.Properties.Resources.loading_app;
-            this.loadingIcon.Location = new System.Drawing.Point(1087, 12);
-            this.loadingIcon.Name = "loadingIcon";
-            this.loadingIcon.Size = new System.Drawing.Size(48, 47);
-            this.loadingIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.loadingIcon.TabIndex = 3;
-            this.loadingIcon.TabStop = false;
+            this.pictureBox4.Image = global::LTIAdminDesktop.Properties.Resources._1377155;
+            this.pictureBox4.Location = new System.Drawing.Point(306, 419);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(121, 108);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 8;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::LTIAdminDesktop.Properties.Resources.terms;
-            this.pictureBox3.Location = new System.Drawing.Point(221, 476);
+            this.pictureBox3.Image = global::LTIAdminDesktop.Properties.Resources.settings1;
+            this.pictureBox3.Location = new System.Drawing.Point(911, 413);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(294, 181);
+            this.pictureBox3.Size = new System.Drawing.Size(130, 124);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 7;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBox4
+            // pictureBox1
             // 
-            this.pictureBox4.Image = global::LTIAdminDesktop.Properties.Resources.trimestres;
-            this.pictureBox4.Location = new System.Drawing.Point(529, 476);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(300, 181);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 8;
-            this.pictureBox4.TabStop = false;
+            this.pictureBox1.Image = global::LTIAdminDesktop.Properties.Resources.Search_256x256_32;
+            this.pictureBox1.Location = new System.Drawing.Point(220, 199);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(149, 146);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
-            // pictureBox5
+            // pictureBox2
             // 
-            this.pictureBox5.Image = global::LTIAdminDesktop.Properties.Resources.settings;
-            this.pictureBox5.Location = new System.Drawing.Point(840, 476);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(294, 181);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 9;
-            this.pictureBox5.TabStop = false;
+            this.pictureBox2.Image = global::LTIAdminDesktop.Properties.Resources.terms_and_conditions_icon;
+            this.pictureBox2.Location = new System.Drawing.Point(592, 424);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(127, 103);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(376, 199);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(203, 24);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "BÚSQUEDA AVANZADA";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.HideSelection = false;
+            this.richTextBox1.Location = new System.Drawing.Point(380, 237);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox1.ShortcutsEnabled = false;
+            this.richTextBox1.Size = new System.Drawing.Size(290, 108);
+            this.richTextBox1.TabIndex = 12;
+            this.richTextBox1.Text = "Filtra los estudiantes por trimestres,\nasignatura, profesor y por nombre \no matrí" +
+    "cula.";
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox2.HideSelection = false;
+            this.richTextBox2.Location = new System.Drawing.Point(681, 237);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox2.ShortcutsEnabled = false;
+            this.richTextBox2.Size = new System.Drawing.Size(219, 108);
+            this.richTextBox2.TabIndex = 14;
+            this.richTextBox2.Text = "A los administradores no se les\nmostrará ningún formulario ni \n.ventana de Normas" +
+    " LTI";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(656, 199);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(252, 24);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "AGREGA ADMINISTRADORES";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(250, 533);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(231, 24);
+            this.label15.TabIndex = 15;
+            this.label15.Text = "GESTION DE TRIMESTRES";
+            this.label15.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(558, 533);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(196, 24);
+            this.label16.TabIndex = 16;
+            this.label16.Text = "GESTION DE NORMAS";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(831, 533);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(288, 24);
+            this.label17.TabIndex = 17;
+            this.label17.Text = "CONFIGURACIONES GENERALES";
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox3.HideSelection = false;
+            this.richTextBox3.Location = new System.Drawing.Point(274, 565);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.ReadOnly = true;
+            this.richTextBox3.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox3.ShortcutsEnabled = false;
+            this.richTextBox3.Size = new System.Drawing.Size(192, 26);
+            this.richTextBox3.TabIndex = 18;
+            this.richTextBox3.Text = "Crea y modifica los trimestres.";
+            this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
+            // 
+            // richTextBox4
+            // 
+            this.richTextBox4.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox4.HideSelection = false;
+            this.richTextBox4.Location = new System.Drawing.Point(220, 592);
+            this.richTextBox4.Name = "richTextBox4";
+            this.richTextBox4.ReadOnly = true;
+            this.richTextBox4.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox4.ShortcutsEnabled = false;
+            this.richTextBox4.Size = new System.Drawing.Size(318, 47);
+            this.richTextBox4.TabIndex = 19;
+            this.richTextBox4.Text = "Nota: Debes crear el trimestre correspondiente al \ntrimestre actual durante el pe" +
+    "ríodo de Intertrimestral \ny ACTIVARLO.";
+            // 
+            // richTextBox5
+            // 
+            this.richTextBox5.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox5.HideSelection = false;
+            this.richTextBox5.Location = new System.Drawing.Point(562, 566);
+            this.richTextBox5.Name = "richTextBox5";
+            this.richTextBox5.ReadOnly = true;
+            this.richTextBox5.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox5.ShortcutsEnabled = false;
+            this.richTextBox5.Size = new System.Drawing.Size(192, 42);
+            this.richTextBox5.TabIndex = 20;
+            this.richTextBox5.Text = "Crear, modifica y elimina las Normas.";
+            // 
+            // richTextBox6
+            // 
+            this.richTextBox6.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox6.HideSelection = false;
+            this.richTextBox6.Location = new System.Drawing.Point(835, 563);
+            this.richTextBox6.Name = "richTextBox6";
+            this.richTextBox6.ReadOnly = true;
+            this.richTextBox6.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.richTextBox6.ShortcutsEnabled = false;
+            this.richTextBox6.Size = new System.Drawing.Size(284, 42);
+            this.richTextBox6.TabIndex = 21;
+            this.richTextBox6.Text = "Cambia las configuraciones para el despliegue\nde las Normas y las Encuestas.";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(174, 378);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(106, 27);
+            this.label18.TabIndex = 16;
+            this.label18.Text = "Impresora";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
+            // 
+            // PrinterList
+            // 
+            this.PrinterList.FormattingEnabled = true;
+            this.PrinterList.Location = new System.Drawing.Point(54, 424);
+            this.PrinterList.Name = "PrinterList";
+            this.PrinterList.Size = new System.Drawing.Size(364, 21);
+            this.PrinterList.TabIndex = 17;
             // 
             // Dashboard
             // 
@@ -764,6 +946,17 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.richTextBox6);
+            this.Controls.Add(this.richTextBox5);
+            this.Controls.Add(this.richTextBox3);
+            this.Controls.Add(this.richTextBox4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -773,18 +966,18 @@
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).EndInit();
             this.panel2.ResumeLayout(false);
             this.ConfigurationPanel.ResumeLayout(false);
             this.ConfigurationPanel.PerformLayout();
             this.TermsPanel.ResumeLayout(false);
             this.TermsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ReportBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -846,5 +1039,18 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.RichTextBox richTextBox4;
+        private System.Windows.Forms.RichTextBox richTextBox5;
+        private System.Windows.Forms.RichTextBox richTextBox6;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox PrinterList;
     }
 }

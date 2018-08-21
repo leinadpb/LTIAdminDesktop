@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LTIAdminDesktop.Forms;
 using LTIAdminDesktop.Models;
+using LTIAdminDesktop.Services;
 
 namespace LTIAdminDesktop.Forms
 {
@@ -38,10 +39,13 @@ namespace LTIAdminDesktop.Forms
 
         string[] columns = { "ID", "Nombre", "Fecha Registro", "Computador", "Nombre Asignatura", "Código", "Sección" };
 
+        IPrintService PrintService;
+
         public Dashboard()
         {
             InitializeComponent();
             _context = new LTIContext();
+            PrintService = new PrintService();
         }
 
         /**
@@ -398,6 +402,12 @@ namespace LTIAdminDesktop.Forms
             // Perform Click in Dashboard
             DashControl.PerformClick();
 
+            //Fill PrinterList
+            foreach(var printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                PrinterList.Items.Add(printer);
+            }
+
             loadingIcon.Visible = false;
         }
         private void ResetFormLayout()
@@ -561,14 +571,14 @@ namespace LTIAdminDesktop.Forms
         {
             foreach(var s in students)
             {
-                ReportBox.Rows.Add(s.LoginName, s.DisplayName, s.RegisteredDate, s.ComputerName, s.SubjectName, s.SubjectCode, s.SubjectSection);
+                ReportBox.Rows.Add(s.LoginName, s.DisplayName, s.RegisteredDate.ToString("dd/MM/yyy") + " - " + s.RegisteredDate.Hour + ":" + s.RegisteredDate.Minute, s.ComputerName, s.SubjectName, s.SubjectCode, s.SubjectSection);
             }
         }
         private void ShowOldStudents(List<HistoryStudents> students)
         {
             foreach (var s in students)
             {
-                ReportBox.Rows.Add(s.LoginName, s.DisplayName, s.RegisteredDate, s.ComputerName, s.SubjectName, s.SubjectSection, s.SubjectSection);
+                ReportBox.Rows.Add(s.LoginName, s.DisplayName, s.RegisteredDate.ToString("dd/MM/yyy") + " - " + s.RegisteredDate.Hour + ":" + s.RegisteredDate.Minute, s.ComputerName, s.SubjectName, s.SubjectSection, s.SubjectSection);
             }
         }
 
@@ -609,6 +619,127 @@ namespace LTIAdminDesktop.Forms
         {
             NormasForm NForm = new NormasForm(_context);
             NForm.ShowDialog();
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void PrintReport_Click(object sender, EventArgs e)
+        {
+            if (ReportBox.RowCount <= 0)
+            {
+                MessageBox.Show("No hay nada para imprimir.", "LTI", MessageBoxButtons.OK);
+            }
+            else if (PrinterList.SelectedItem == null) {
+                MessageBox.Show("Seleccione una impresora. Diríjase a la pestaña configuraciones.", "LTI", MessageBoxButtons.OK);
+            }
+            else
+            {
+                if(ListTrimestres.SelectedItem == null)
+                {
+                    MessageBox.Show("Seleccione un filtro de búsqueda.");
+                }
+                else
+                {
+                    string trimestre = ListTrimestres.SelectedValue.ToString();
+                    int id = Int32.Parse(trimestre);
+                    Trimestres tr = _context.Trimestres.First(t => t.TrimestreId == id);
+                    string displayTrimestre = tr.Name + " | " + tr.StartDate.ToString("yyyy-MM-dd") + " - " + tr.EndDate.ToString("yyyyy-MM-dd");
+
+                    string content = "<!DOCTYPE html><html>" +
+                                    "<head>" +
+                                    "<style>" +
+                                    "@page { size: A4 portrait; }" +
+                                    "</style>" +
+                                    "<meta charset='UTF-8'><title>LTI ADMIN</title>" +
+                                    "</head>" +
+                                    "<body>" +
+                                        "<div align='center' style='width:100%;height:auto;padding:7px;margin-top:5px;margin-bottom:5px;'>" +
+                                            "<img src='http://www.intec.edu.do/identidad-corporativa/img/descargas-mini/logo-intec-mini.jpg' alt='INSTITUTO TECNOLOGICO DE SANTO DOMINGO' />" +
+                                            "<h2>LABORATORIO DE TECNOLOGIA DE LA INFORMACION</h2>" +
+                                            "<p><i>Reporte de firmas (consentimiento) de los estudiantes del Laboratorio.</i></p>" +
+                                        "</div>" +
+                                        "<div>" +
+                                        $"<h4>{displayTrimestre}</h4>" +
+                                        "</div>" +
+                                        "<br />" +
+                                        "<table width='100%'>" +
+                                            "<tr style='padding:2px;' align='center'>" +
+                                                "<th>No.</th>" +
+                                                "<th>ID</th>" +
+                                                "<th>Nombre</th>" +
+                                                "<th>Fecha</th>" +
+                                                "<th>Computador</th>" +
+                                            "</tr>";
+
+                    string temp = "";
+                    long count = 1;
+
+                    foreach (DataGridViewRow item in ReportBox.Rows)
+                    {
+                        temp += "<tr style='padding:1.5px;'>";
+
+                        temp += $"<td align='center' height='30'>{count}</td>";
+                        for (int i = 0; i < 4; i++)
+                        {
+                            temp += "<td height='30' align='center'>";
+
+                            if (i == 2)
+                            {
+                                string[] strs = item.Cells[i].Value.ToString().Split(' ');
+                                temp += strs[0].ToString();
+                            }
+                            else
+                            {
+                                temp += item.Cells[i].Value.ToString();
+                            }
+                            temp += "</td>";
+                        }
+                        temp += "</tr>";
+                        count++;
+                    }
+                    content += temp;
+                    content += "</table></body></html>";
+
+                    loadingIcon.Visible = true;
+                    string printerName = PrinterList.SelectedItem.ToString();
+
+                    //Print
+                    bool result = await PrintService.Print(content, printerName);
+                    loadingIcon.Visible = false;
+                    if (result)
+                    {
+                        MessageBox.Show("Listo.", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lo sentimos, ha ocurrido un error.", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                
+            }
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
