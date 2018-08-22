@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -42,6 +43,8 @@ namespace LTIAdminDesktop.Forms
         ITeachersService TeachersService;
         ITrimestresService TrimestresService;
         IHistoryStudentService HistoryStudentService;
+        IPdfService PdfService;
+        IFileService FileService;
 
         public Dashboard()
         {
@@ -53,6 +56,8 @@ namespace LTIAdminDesktop.Forms
             TeachersService = new TeachersService();
             TrimestresService = new TrimestresService();
             HistoryStudentService = new HistoryStudentsService();
+            PdfService = new PdfService();
+            FileService = new FileService();
         }
 
         /**
@@ -665,88 +670,112 @@ namespace LTIAdminDesktop.Forms
                 }
                 else
                 {
-                    string trimestre = ListTrimestres.SelectedValue.ToString();
-                    int id = Int32.Parse(trimestre);
-                    Trimestres tr = TrimestresService.Get(id).Result;
-                    string displayTrimestre = tr.Name + " | " + tr.StartDate.ToString("yyyy-MM-dd") + " - " + tr.EndDate.ToString("yyyyy-MM-dd");
-
-                    string content = "<!DOCTYPE html><html>" +
-                                    "<head>" +
-                                    "<style>" +
-                                    "@page { size: A4 portrait; }" +
-                                    "</style>" +
-                                    "<meta charset='UTF-8'><title>LTI ADMIN</title>" +
-                                    "</head>" +
-                                    "<body>" +
-                                        "<div align='center' style='width:100%;height:auto;padding:7px;margin-top:5px;margin-bottom:5px;'>" +
-                                            "<img src='http://www.intec.edu.do/identidad-corporativa/img/descargas-mini/logo-intec-mini.jpg' alt='INSTITUTO TECNOLOGICO DE SANTO DOMINGO' />" +
-                                            "<h2>LABORATORIO DE TECNOLOGIA DE LA INFORMACION</h2>" +
-                                            "<p><i>Reporte de firmas (consentimiento) de los estudiantes del Laboratorio.</i></p>" +
-                                        "</div>" +
-                                        "<div>" +
-                                        $"<h4>{displayTrimestre}</h4>" +
-                                        "</div>" +
-                                        "<br />" +
-                                        "<table width='100%'>" +
-                                            "<tr style='padding:2px;' align='center'>" +
-                                                "<th>No.</th>" +
-                                                "<th>ID</th>" +
-                                                "<th>Nombre</th>" +
-                                                "<th>Fecha</th>" +
-                                                "<th>Computador</th>" +
-                                            "</tr>";
-
-                    string temp = "";
-                    long count = 1;
-
-                    foreach (DataGridViewRow item in ReportBox.Rows)
-                    {
-                        temp += "<tr style='padding:1.5px;'>";
-
-                        temp += $"<td align='center' height='30'>{count}</td>";
-                        for (int i = 0; i < 4; i++)
-                        {
-                            temp += "<td height='30' align='center'>";
-
-                            if (i == 2)
-                            {
-                                string[] strs = item.Cells[i].Value.ToString().Split(' ');
-                                temp += strs[0].ToString();
-                            }
-                            else
-                            {
-                                temp += item.Cells[i].Value.ToString();
-                            }
-                            temp += "</td>";
-                        }
-                        temp += "</tr>";
-                        count++;
-                    }
-                    content += temp;
-                    content += "</table></body></html>";
-
                     loadingIcon.Visible = true;
-                    string printerName = PrinterList.SelectedItem.ToString();
+                    string content = CreatePdfString();
 
                     //Print
+                    string printerName = PrinterList.SelectedItem.ToString();
                     bool result = await PrintService.Print(content, printerName);
                     loadingIcon.Visible = false;
                     if (result)
                     {
-                        MessageBox.Show("Listo.", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Listo!", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         MessageBox.Show("Lo sentimos, ha ocurrido un error.", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                
             }
+        }
+
+        private string CreatePdfString()
+        {
+            string trimestre = ListTrimestres.SelectedValue.ToString();
+            int id = Int32.Parse(trimestre);
+            Trimestres tr = TrimestresService.Get(id).Result;
+            string displayTrimestre = tr.Name + " | " + tr.StartDate.ToString("yyyy-MM-dd") + " - " + tr.EndDate.ToString("yyyyy-MM-dd");
+
+            string content = "<!DOCTYPE html><html>" +
+                            "<head>" +
+                            "<style>" +
+                            "@page { size: A4 portrait; }" +
+                            "</style>" +
+                            "<meta charset='UTF-8'><title>LTI ADMIN</title>" +
+                            "</head>" +
+                            "<body>" +
+                                "<div align='center' style='width:100%;height:auto;padding:7px;margin-top:5px;margin-bottom:5px;'>" +
+                                    "<img src='http://www.intec.edu.do/identidad-corporativa/img/descargas-mini/logo-intec-mini.jpg' alt='INSTITUTO TECNOLOGICO DE SANTO DOMINGO' />" +
+                                    "<h2>LABORATORIO DE TECNOLOGIA DE LA INFORMACION</h2>" +
+                                    "<p><i>Reporte de firmas (consentimiento) de los estudiantes del Laboratorio.</i></p>" +
+                                "</div>" +
+                                "<div>" +
+                                $"<h4>{displayTrimestre}</h4>" +
+                                "</div>" +
+                                "<br />" +
+                                "<table width='100%'>" +
+                                    "<tr style='padding:2px;' align='center'>" +
+                                        "<th>No.</th>" +
+                                        "<th>ID</th>" +
+                                        "<th>Nombre</th>" +
+                                        "<th>Fecha</th>" +
+                                        "<th>Computador</th>" +
+                                    "</tr>";
+
+            string temp = "";
+            long count = 1;
+
+            foreach (DataGridViewRow item in ReportBox.Rows)
+            {
+                temp += "<tr style='padding:1.5px;'>";
+
+                temp += $"<td align='center' height='30'>{count}</td>";
+                for (int i = 0; i < 4; i++)
+                {
+                    temp += "<td height='30' align='center'>";
+
+                    if (i == 2)
+                    {
+                        string[] strs = item.Cells[i].Value.ToString().Split(' ');
+                        temp += strs[0].ToString();
+                    }
+                    else
+                    {
+                        temp += item.Cells[i].Value.ToString();
+                    }
+                    temp += "</td>";
+                }
+                temp += "</tr>";
+                count++;
+            }
+            content += temp;
+            content += "</table></body></html>";
+            return content;
         }
 
         private void label18_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SaveReport_Click(object sender, EventArgs e)
+        {
+            //Save Report to local address.
+            var dialog = new SaveFileDialog();
+            dialog.Filter = "Pdf Files|*.pdf";
+            dialog.ShowDialog();
+            string content = CreatePdfString();
+            byte[] pdf = PdfService.GetPdfStrem(content);
+            string path = dialog.FileName;
+            bool result = FileService.SaveFileAsync(pdf, path).Result;
+            if (result)
+            {
+                MessageBox.Show("El archivo se ha guardado.", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Ha ocurrido un error al intentar generar el archivo. Por favor, inténtelo de nuevo más tarde.", "LTI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

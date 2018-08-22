@@ -18,11 +18,13 @@ namespace LTIAdminDesktop.Services
 
         private string LocalPath;
         private readonly IFileService FileService;
+        private readonly IPdfService PdfService;
 
         public PrintService()
         {
             LocalPath = Directory.GetCurrentDirectory();
             FileService = new FileService();
+            PdfService = new PdfService();
         }
 
         public Task<bool> Print(string html, string PrinterName)
@@ -31,14 +33,7 @@ namespace LTIAdminDesktop.Services
 
                 try
                 {
-                    var pdf = Pdf.From(html)
-                                .OfSize(PaperSize.A4)
-                                .WithTitle("LABORATORIO DE TECNOLOGIA DE LA INFORMACION")
-                                .WithoutOutline()
-                                .WithMargins(1.75.Centimeters())
-                                .Portrait()
-                                .Comressed()
-                                .Content();
+                    byte[] pdf = PdfService.GetPdfStrem(html);
                     
                     // Save it in local
                     var fileName = "tempPdf.pdf";

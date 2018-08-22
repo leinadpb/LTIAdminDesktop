@@ -45,6 +45,8 @@
             this.SurveyControl = new System.Windows.Forms.Button();
             this.TermsControl = new System.Windows.Forms.Button();
             this.ConfigurationPanel = new System.Windows.Forms.Panel();
+            this.PrinterList = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.SelectTeacherSubject = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.ReminderText = new System.Windows.Forms.TextBox();
@@ -95,8 +97,6 @@
             this.richTextBox4 = new System.Windows.Forms.RichTextBox();
             this.richTextBox5 = new System.Windows.Forms.RichTextBox();
             this.richTextBox6 = new System.Windows.Forms.RichTextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.PrinterList = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadingIcon)).BeginInit();
             this.panel2.SuspendLayout();
@@ -326,6 +326,25 @@
             this.ConfigurationPanel.Name = "ConfigurationPanel";
             this.ConfigurationPanel.Size = new System.Drawing.Size(944, 577);
             this.ConfigurationPanel.TabIndex = 2;
+            // 
+            // PrinterList
+            // 
+            this.PrinterList.FormattingEnabled = true;
+            this.PrinterList.Location = new System.Drawing.Point(54, 424);
+            this.PrinterList.Name = "PrinterList";
+            this.PrinterList.Size = new System.Drawing.Size(364, 21);
+            this.PrinterList.TabIndex = 17;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(174, 378);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(106, 27);
+            this.label18.TabIndex = 16;
+            this.label18.Text = "Impresora";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // SelectTeacherSubject
             // 
@@ -678,6 +697,7 @@
             this.SaveReport.TabIndex = 1;
             this.SaveReport.Text = "Guardar";
             this.SaveReport.UseVisualStyleBackColor = false;
+            this.SaveReport.Click += new System.EventHandler(this.SaveReport_Click);
             // 
             // ReportBox
             // 
@@ -911,25 +931,6 @@
             this.richTextBox6.Size = new System.Drawing.Size(284, 42);
             this.richTextBox6.TabIndex = 21;
             this.richTextBox6.Text = "Cambia las configuraciones para el despliegue\nde las Normas y las Encuestas.";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(174, 378);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(106, 27);
-            this.label18.TabIndex = 16;
-            this.label18.Text = "Impresora";
-            this.label18.Click += new System.EventHandler(this.label18_Click);
-            // 
-            // PrinterList
-            // 
-            this.PrinterList.FormattingEnabled = true;
-            this.PrinterList.Location = new System.Drawing.Point(54, 424);
-            this.PrinterList.Name = "PrinterList";
-            this.PrinterList.Size = new System.Drawing.Size(364, 21);
-            this.PrinterList.TabIndex = 17;
             // 
             // Dashboard
             // 

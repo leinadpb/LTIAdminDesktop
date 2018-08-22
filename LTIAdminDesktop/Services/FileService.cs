@@ -9,6 +9,11 @@ namespace LTIAdminDesktop.Services
 {
     public class FileService : IFileService
     {
+        public Task<bool> SaveFile(string fileContent, string location)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> SaveFileAsync(byte[] file, string location)
         {
             return Task.Run(() => {

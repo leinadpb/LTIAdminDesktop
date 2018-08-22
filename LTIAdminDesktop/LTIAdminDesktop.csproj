@@ -363,11 +363,13 @@
     <Compile Include="Services\HistoryStudentsService.cs" />
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IHistoryStudentService.cs" />
+    <Compile Include="Services\IPdfService.cs" />
     <Compile Include="Services\IPrintService.cs" />
     <Compile Include="Services\IStudentsService.cs" />
     <Compile Include="Services\ISubjectsService.cs" />
     <Compile Include="Services\ITeachersService.cs" />
     <Compile Include="Services\ITrimestresService.cs" />
+    <Compile Include="Services\PdfService.cs" />
     <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\StudentsService.cs" />
     <Compile Include="Services\SubjectsService.cs" />

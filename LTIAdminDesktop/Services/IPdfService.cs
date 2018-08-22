@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace LTIAdminDesktop.Services
 {
-    public interface IFileService
+    public interface IPdfService
     {
-        Task<bool> SaveFileAsync(byte[] file, string location);
-        Task<bool> SaveFile(string fileContent, string location);
+        byte[] GetPdfStrem(string html);
     }
 }
