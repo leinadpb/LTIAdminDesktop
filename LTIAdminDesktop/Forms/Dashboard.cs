@@ -30,22 +30,29 @@ namespace LTIAdminDesktop.Forms
         private string SHOW_RULES_REMINDER = "SHOW_RULES_REMINDER";
         private string RULES_REMINDER_TEXT = "RULES_REMINDER_TEXT";
         private string ALLOW_SELECT_TEACHER_SUBJECT = "ALLOW_SELECT_TEACHER_SUBJECT";
-
         private string actual_survey_student_link = "";
         private string actual_survey_teacher_link = "";
-
         private bool PopulateDataGrid = true;
         private bool HaveFilledLists = false;
-
         string[] columns = { "ID", "Nombre", "Fecha Registro", "Computador", "Nombre Asignatura", "Código", "Sección" };
 
         IPrintService PrintService;
+        IStudentsService StudentsService;
+        ISubjectsService SubjectsService;
+        ITeachersService TeachersService;
+        ITrimestresService TrimestresService;
+        IHistoryStudentService HistoryStudentService;
 
         public Dashboard()
         {
             InitializeComponent();
             _context = new LTIContext();
             PrintService = new PrintService();
+            StudentsService = new StudentsService();
+            SubjectsService = new SubjectsService();
+            TeachersService = new TeachersService();
+            TrimestresService = new TrimestresService();
+            HistoryStudentService = new HistoryStudentsService();
         }
 
         /**
@@ -473,9 +480,9 @@ namespace LTIAdminDesktop.Forms
 
         private void fillLists()
         {
-            var asigs = _context.Subjects.OrderBy(s => s.SubjectName).Select(s => s).ToList();
-            var teachs = _context.Teachers.OrderBy(t => t.DisplayName).Select(t => t).ToList();
-            var trimes = _context.Trimestres.OrderBy(t => t.Name).Select(t => t).ToList();
+            var asigs = SubjectsService.GetAll(true).Result;
+            var teachs = TeachersService.GetAll(true).Result;
+            var trimes = TrimestresService.GetAll(true).Result;
 
             asigs.Insert(0, new Subjects { SubjectId = -1, SubjectName = "Seleccione ---"});
             teachs.Insert(0, new Teachers { TeacherId = -1, DisplayName = "Seleccione ---"});
@@ -525,9 +532,9 @@ namespace LTIAdminDesktop.Forms
 
         private void GenerateReport_Click(object sender, EventArgs e)
         {
-            var students = _context.Students.Select(s => s);
+            var students = StudentsService.GetAllQueryable();
 
-            var oldStudents = _context.HistoryStudents.Select(hs => hs);
+            var oldStudents = HistoryStudentService.GetAllQueryable();
 
             bool includeOld = true;
             if (ActivateFilter.Checked)
@@ -535,19 +542,19 @@ namespace LTIAdminDesktop.Forms
                 if (ListTrimestres.SelectedItem != null && ListTrimestres.SelectedIndex > 0)
                 {
                     int id = Int32.Parse(ListTrimestres.SelectedValue.ToString());
-                    Trimestres trimestre = _context.Trimestres.Where(t => t.TrimestreId == id).FirstOrDefault();
+                    Trimestres trimestre = TrimestresService.Get(id).Result;
                     students = students.Where(s => s.RegisteredDate >= trimestre.StartDate && s.RegisteredDate <= trimestre.EndDate).Select(s => s);
                     includeOld = false;
                 }
                 if (ListTeachers.SelectedItem != null && ListTeachers.SelectedIndex > 0)
                 {
                     int id = Int32.Parse(ListTeachers.SelectedValue.ToString());
-                    students = students.Where(s => s.TeacherId == id).Select(t => t);
+                    students = students.Where(s => s.TeacherId == id).Select(s => s);
                 }
                 if (ListSubjects.SelectedItem != null && ListSubjects.SelectedIndex > 0)
                 {
                     int id = Int32.Parse(ListSubjects.SelectedValue.ToString());
-                    Subjects subject = _context.Subjects.Where(sb => sb.SubjectId == id).FirstOrDefault();
+                    Subjects subject = SubjectsService.GetById(id).Result;
                     students = students.Where(s => s.SubjectCode == subject.SubjectCode).Select(s => s);
                 }
                 if (!textBox1.Text.Equals(""))
@@ -660,7 +667,7 @@ namespace LTIAdminDesktop.Forms
                 {
                     string trimestre = ListTrimestres.SelectedValue.ToString();
                     int id = Int32.Parse(trimestre);
-                    Trimestres tr = _context.Trimestres.First(t => t.TrimestreId == id);
+                    Trimestres tr = TrimestresService.Get(id).Result;
                     string displayTrimestre = tr.Name + " | " + tr.StartDate.ToString("yyyy-MM-dd") + " - " + tr.EndDate.ToString("yyyyy-MM-dd");
 
                     string content = "<!DOCTYPE html><html>" +

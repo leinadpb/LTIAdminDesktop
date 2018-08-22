@@ -17,41 +17,34 @@ namespace LTIAdminDesktop.Services
     {
 
         private string LocalPath;
+        private readonly IFileService FileService;
 
         public PrintService()
         {
             LocalPath = Directory.GetCurrentDirectory();
+            FileService = new FileService();
         }
 
         public Task<bool> Print(string html, string PrinterName)
         {
-            return Task.Run(() => {
+            return Task.Run(async () => {
 
                 try
                 {
                     var pdf = Pdf.From(html)
                                 .OfSize(PaperSize.A4)
-                              //  .WithTitle("LABORATORIO DE TECNOLOGIA DE LA INFORMACION")
-                             //   .WithoutOutline()
-                                .WithMargins(1.25.Centimeters())
-                              //  .Portrait()
-                              //  .Comressed()
+                                .WithTitle("LABORATORIO DE TECNOLOGIA DE LA INFORMACION")
+                                .WithoutOutline()
+                                .WithMargins(1.75.Centimeters())
+                                .Portrait()
+                                .Comressed()
                                 .Content();
                     
-
                     // Save it in local
                     var fileName = "tempPdf.pdf";
                     var rootPath = LocalPath;
                     var filePath = Path.Combine(rootPath, fileName);
-
-                    try
-                    {
-                        File.WriteAllBytes(filePath, pdf);
-                    }
-                    catch(IOException exp)
-                    {
-                        MessageBox.Show($"Error: {exp}");
-                    }
+                    await FileService.SaveFileAsync(pdf, filePath);
 
                     IPrinter printer = new Printer();
                     printer.PrintRawFile(PrinterName, filePath, paused: false);
